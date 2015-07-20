@@ -1,0 +1,62 @@
+<header>
+  <img src="/Comminity.jpg" alt="Cover View" style="width:100%">
+  <nav class="be-blue white large-padding nav--main">
+    <ul class="no-list row center-xs middle-xs">
+      <li class="col-md">
+        <h1 class= "no-margin" id="logo"> <%= link_to "Community", root_path %> </h1>
+      </li>
+      <li class="col-md">
+        <%= link_to "Que es Community?", root_path %>
+      </li>
+      <li class="food-types col-md">
+        <span>Tus Tickets</span>
+        <ul class="inner-list">
+          <% @tickets.each do |ticket| %>
+            <li>
+              <%= link_to ticket.title, category %>
+            </li>
+          <%end%>
+          <% if user_signed_in? %>
+          <li>
+              <%= link_to "Nuevo ticket", root_path %>
+          </li>
+          <%end%>
+        </ul>
+      </li>
+      <li class="food-types col-md middle-xs">
+        <span>Tiendas con más quejas</span>
+        <ul class="inner-list">
+          <li>
+              <%= link_to "Subway", root_path %>
+          </li>
+          <li>
+              <%= link_to "SuperSalads", root_path %>
+          </li>
+          <li>
+              <%= link_to "BlattSalads", root_path %>
+          </li>
+        </ul>
+      </li>
+      <l1 class="col-md">
+        <%= link_to "Crear nueva queja", root_path, method: :get %>
+      </l1>
+      <% if user_signed_in? %>
+      <l1 class="col-md">
+        <%= link_to "Cerrar Sesion", destroy_user_session_path, method: :delete %>
+      </l1>
+        <% if current_user.admin_user? %>
+        <l1 class="col-md">
+          <%= link_to "Dashboard", root_path, method: :get %>
+        </l1>
+        <%end%>
+      <% else %>
+        <l1 class="col-md">
+        <%= link_to "Iniciar Sesion", new_user_session_path %>
+        </l1>
+        <!-- <l1 class="col-md">
+        <%= link_to "Crear Cuenta", new_user_registration_path %>
+      </l1> -->
+      <%end%>
+    </ul>
+  </nav>
+</header>
